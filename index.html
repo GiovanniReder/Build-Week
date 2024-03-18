@@ -3,31 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <!-- <link href="./assets/style/reset.css" rel="stylesheet" /> -->
+
+    <link href="./assets/style/index.css" rel="stylesheet" />
+    <title>Epicode</title>
   </head>
-
   <body>
-    <h1>Vuoto</h1>
-    <p></p>
+    <header>
+      <img src="./assets/images/epicode_logo.png" />
+    </header>
+    <main>
+      <!-- <h1 >Welcome to your exam</h1>
+      <h2 class="highlight">Instructions</h2>
+      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid repellendus dolor distinctio sint sunt. Nulla, ratione nisi laudantium veniam minus deleniti tempora tenetur repudiandae molestias error!</p>
+      <div class="container"></div>
+      <form class="main-page-form">
+        <input type="checkbox"> clicca qui per farti rubare i dati
+        <button>CIAO</button> -->
+      </form>
 
-    <script>
-      setTimeout(() => {
-        const h1 = document.querySelector("h1");
-        h1.innerText = "Timer scaduto";
-      }, 3000);
 
-      let counter = 0;
-
-      const timer = setInterval(() => {
-        counter++;
-        const p = document.querySelector("p");
-        p.innerText = counter;
-
-        if (counter === 10) {
-          clearInterval(timer);
-          p.innerText = "Conteggio finito";
-        }
-      }, 1000);
-    </script>
+    </main>
+    
+    <footer></footer>
+    <script href="script.jss"></script>
   </body>
 </html>
