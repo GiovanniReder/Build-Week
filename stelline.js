@@ -1,22 +1,14 @@
+const buttonStars = document.querySelectorAll(".starsClass");
+const allStars = [];
 
-const starContainer = document.querySelector(".starRating");
-const totalStars = 10;
-  
-for (let i = 0; i < totalStars; i++) {
-    const starImg = document.createElement("img");
-    starImg.className = "star";
-    starImg.src = "assets/images/star.svg"; 
-    starContainer.appendChild(starImg);
-}
-// lollo
-starContainer.addEventListener("click", function(){
-    const star = document.querySelector(".star")
-    console.log(star)
-    star.style = "fill:white"
-        
-})
-
-
-  
-
-  
+buttonStars.forEach(star => {
+    allStars.push(star);
+    star.onclick = event => {
+        allStars.forEach(s => {
+            s.classList.remove("newStarsClass");
+        });
+        for (let i = 0; i <= allStars.indexOf(star); i++) {
+            allStars[i].classList.add("newStarsClass");
+        }
+    };
+});
