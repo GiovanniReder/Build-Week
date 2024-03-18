@@ -14,4 +14,4 @@
 //       clearInterval(timer);
 //       p.innerText = "Conteggio finito";
 //     }
-//   }, 1000); ciao
+//   }, 1000);
