@@ -8,7 +8,7 @@ for (let i = 0; i < totalStars; i++) {
     starImg.src = "assets/images/star.svg"; 
     starContainer.appendChild(starImg);
 }
-
+// lollo
 starContainer.addEventListener("click", function(){
     const star = document.querySelector(".star")
     console.log(star)
