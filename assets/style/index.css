@@ -68,33 +68,3 @@ button:hover {
     justify-content: space-around;
     align-items: center;
 } */
-.mainBody{
-  text-align: center;
-}
-input{
-  background-color: transparent;
-  width: 900px;
-  height: 20px;
-  outline: 0; 
-  border-width: 0 0 2px; 
-  border-color: #d20094; 
-  
-}
-.starCheck{
-  cursor: pointer;
-}
-.starRating {
-  margin-top: 20px;
-}
-
-.star {
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-  margin: 10px;
-  fill: #d20094;
-}
-
-form h2{
-  margin: 6%
-}
