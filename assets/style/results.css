@@ -3,6 +3,10 @@ h1 {
   line-height: 1.5em;
 }
 
+h2 {
+  font-size: 3.5em;
+}
+
 h3 {
   font-size: 1.3em;
 }
@@ -28,6 +32,17 @@ button {
 
 .container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+}
+
+.score {
+  font-weight: 700;
+}
+
+.chart-container {
+  min-width: 40%;
+  max-width: 60%;
+  display: flex;
+  justify-content: center;
 }
