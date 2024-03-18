@@ -4,31 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="welcome.css" />
+    <link rel="stylesheet" href="/assets/style/reset.css" />
+    <link rel="stylesheet" href="/assets/style/index.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+    </style>
   </head>
 
   <body>
-    <h1>Vuoto</h1>
-    <p></p>
+    <header>
+      <div>
+        <img src="/assets/images/epicode_logo.png" alt="logo" />
+      </div>
+      <div id="app"></div>
+    </header>
+    <main>
+      <h1>How can i create a <span>checkbox in HTML?</span></h1>
+      <div>
+        <button>&lt;input type="check"&gt;</button>
+        <button>&lt;input type="checkbox"&gt;</button>
+        <button>&lt;checkbox&gt;</button>
+        <button>&lt;input type="button"&gt;</button>
+      </div>
+    </main>
 
-    <script>
-      setTimeout(() => {
-        const h1 = document.querySelector("h1");
-        h1.innerText = "Timer scaduto";
-      }, 3000);
-
-      let counter = 0;
-
-      const timer = setInterval(() => {
-        counter++;
-        const p = document.querySelector("p");
-        p.innerText = counter;
-
-        if (counter === 10) {
-          clearInterval(timer);
-          p.innerText = "Conteggio finito";
-        }
-      }, 1000);
-    </script>
+    <script src="/index.js"></script>
   </body>
 </html>
