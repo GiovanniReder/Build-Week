@@ -1,23 +1,3 @@
-let seconds = 60;
-let timerBar = document.getElementById("timer-bar");
-let timerText = document.getElementById("timer");
-
-function updateTimer() {
-  seconds--;
-  timerText.innerText = seconds;
-
-  let progressAngle = -90;
-
-  timerBar.style.transform = `rotate(${progressAngle}deg)`;
-
-  if (seconds === 0) {
-    clearInterval(timerInterval);
-    alert("Tempo scaduto!");
-  }
-}
-
-let timerInterval = setInterval(updateTimer, 1000);
-
 const FULL_DASH_ARRAY = 283;
 const WARNING_THRESHOLD = 10;
 const ALERT_THRESHOLD = 5;

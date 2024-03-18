@@ -28,7 +28,7 @@ p {
 }
 
 body {
-  height: 100vh;
+  height: 100%;
   background-image: url(../images/bg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
@@ -74,6 +74,7 @@ button {
   border: none;
   padding-block: 1em;
   padding-inline: 3em;
+  box-shadow: -3px -2px 2px 1px #e2ffff;
 }
 
 button:hover {
@@ -157,7 +158,7 @@ main div {
 }
 main div button {
   color: white;
-  border: 1px solid white;
+
   border-radius: 40px;
   background-color: #3b2a64;
   font-size: 1.2em;
