@@ -92,4 +92,15 @@ button:hover {
   form h2{
     margin: 6%
   }
-  
+  .starsClass {
+    cursor: pointer;
+}
+
+.starsClass{
+    fill: #0c1035;
+}
+
+.newStarsClass{
+    fill: #00ffff;
+    
+}
