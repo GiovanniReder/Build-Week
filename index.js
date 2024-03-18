@@ -1,21 +1,3 @@
-/*
-      setTimeout(() => {
-        const h1 = document.querySelector("h1");
-        h1.innerText = "Timer scaduto";
-      }, 60000);
-
-      let counter = 60;
-
-      const timer = setInterval(() => {
-        counter--;
-        const p = document.querySelector("p");
-        p.innerText = counter;
-
-        if (counter === 0) {
-          clearInterval(timer);
-          p.innerText = "Conteggio finito";
-        }
-      }, 1000);*/
 let seconds = 60;
 let timerBar = document.getElementById("timer-bar");
 let timerText = document.getElementById("timer");
@@ -24,10 +6,8 @@ function updateTimer() {
   seconds--;
   timerText.innerText = seconds;
 
-  // Calcola l'angolo per il progresso
-  let progressAngle = 360 - 360 * (seconds / 60);
+  let progressAngle = -90;
 
-  // Ruota la barra del timer per visualizzare il progresso
   timerBar.style.transform = `rotate(${progressAngle}deg)`;
 
   if (seconds === 0) {
