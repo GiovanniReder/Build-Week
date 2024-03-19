@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const buttonStars = document.querySelectorAll(".starsClass");
     const allStars = [];
     const allStarsWithFeedback = [];
+    let textFeedback = ""
         
     buttonStars.forEach(star => {
         allStars.push(star);
@@ -25,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
    
     const buttonSendRe = document.getElementById("sendButtonId");
     const containerStars = document.getElementsByClassName("mainBody")[0]; 
+    const inputText = document.getElementById("textInputId");
     
     buttonSendRe.onclick = event => {
         if (allStarsWithFeedback.length === 0) {
@@ -32,36 +34,42 @@ document.addEventListener("DOMContentLoaded", function() {
             return; 
         }
         containerStars.remove(); 
-    
-        if (allStarsWithFeedback.length <= 6) {
-            const messageNegative = document.createElement("h1");
-            const sadIcon = document.createElement ("div")
-            sadIcon.classList.add("far" ,"fa-frown")
-            sadIcon.style.color = "red"
-            sadIcon.style.fontSize = "50px"
-            messageNegative.textContent = "Grazie per il feedback...Ci dispiace che non ti sia trovato bene ";
-            messageNegative.appendChild(sadIcon)
-            document.body.appendChild(messageNegative); 
-    
-        } else if (allStarsWithFeedback.length <= 8) {
-            const messageNeutral = document.createElement("h1");
-            const neutralIcon = document.createElement("div")
-            neutralIcon.classList.add("far", "fa-meh")
-            neutralIcon.style.color = "yellow"
-            neutralIcon.style.fontSize = "50px"
-            messageNeutral.textContent = "Grazie per il feedback...Con il vostro parere proviamo sempre a migliorare ";
-            messageNeutral.appendChild(neutralIcon)
-            document.body.appendChild(messageNeutral); 
-    
-        } else {
-            const messagePositive = document.createElement("h1"); 
-            const smileIcon = document.createElement("div");
-            smileIcon.classList.add("far", "fa-laugh");
-            smileIcon.style.color = "green";
-            smileIcon.style.fontSize = "50px"
-            messagePositive.textContent = "Grazie per il feedback...Siamo contenti che ti sia trovato bene ";
-            messagePositive.appendChild(smileIcon);
-            document.body.appendChild(messagePositive); 
-        }
+        setTimeout(function(){
+
+            if (allStarsWithFeedback.length <= 6) {
+                const messageNegative = document.createElement("h1");
+                const sadIcon = document.createElement ("div")
+                sadIcon.classList.add("far" ,"fa-frown")
+                sadIcon.style.color = "red"
+                sadIcon.style.fontSize = "50px"
+                messageNegative.textContent = "Grazie per il feedback...Ci dispiace che non ti sia trovato bene ";
+                messageNegative.appendChild(sadIcon)
+                document.body.appendChild(messageNegative); 
+        
+            } else if (allStarsWithFeedback.length <= 8) {
+                const messageNeutral = document.createElement("h1");
+                const neutralIcon = document.createElement("div")
+                neutralIcon.classList.add("far", "fa-meh")
+                neutralIcon.style.color = "yellow"
+                neutralIcon.style.fontSize = "50px"
+                messageNeutral.textContent = "Grazie per il feedback...Con il vostro parere proveremo sempre a migliorare ";
+                messageNeutral.appendChild(neutralIcon)
+                document.body.appendChild(messageNeutral); 
+        
+            } else {
+                const messagePositive = document.createElement("h1"); 
+                const smileIcon = document.createElement("div");
+                smileIcon.classList.add("far", "fa-laugh");
+                smileIcon.style.color = "green";
+                smileIcon.style.fontSize = "50px"
+                messagePositive.textContent = "Grazie per il feedback...Siamo contenti che ti sia trovato bene ";
+                messagePositive.appendChild(smileIcon);
+                document.body.appendChild(messagePositive); 
+            }
+            textFeedback = inputText.value;
+            console.log(allStarsWithFeedback);
+            console.log(textFeedback)
+        },500)
     }
+    
 });
