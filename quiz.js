@@ -210,36 +210,77 @@ const questions = [
   },
 ];
 
-const option = document.querySelectorAll("button");
-const question = document.querySelectorAll("h1");
-
 const startButton = document.getElementById("startBtn");
-document.addEventListener("DOMContentLoaded", () => {
-  startButton.addEventListener("click", () => {
-    questions.forEach((paperino) => {
-      const div = document.createElement("div");
-      div.classList.add("question_Container");
-      const h1 = document.createElement("h1");
+const mainContainer = document.querySelector("main");
+const correctAnswers = [];
 
-      h1.innerText = paperino.question;
-      console.log(h1.innerText);
-      div.appendChild(h1);
-      document.getElementById("body").appendChild(div);
-      const answers = paperino.incorrect_answers.concat(
-        paperino.correct_answer
-      );
-      console.log(answers);
-
-      answers.forEach((pippo) => {
-        const button = document.createElement("button");
-        button.innerText = pippo;
-        div.appendChild(button);
-      });
-      const h4 = document.createElement("h4");
-      const numQ = document.getElementById("questionNumber");
-
-      numQ.innerText("prova");
-      h4.appendChild(numQ);
-    });
-  });
+startButton.addEventListener("click", () => {
+  clearPage();
+  displayQuestion(0);
 });
+
+const clearPage = () => {
+  mainContainer.innerHTML = "";
+};
+
+const displayQuestion = (index) => {
+  //prendo nota del numero di oggetti nell'array per calcolare lo score totale
+  //che si fa (numero risposte giuste/numero totale domande) * 100
+  //questo dato andra' ad aggiornare il results.js
+  const totalScore = questions.length;
+  // console.log(totalScore)
+  const correctAnswersLen = correctAnswers.length;
+  const currentQuest = questions[index];
+
+  //genero un div e lo pusho nel main
+
+  const questionDiv = document.createElement("div");
+  questionDiv.classList.add("question-title-container");
+  mainContainer.appendChild(questionDiv);
+
+  //genero un h1 che prende il titolo dall'oggetto e lo pusho nel div
+
+  const questionTitle = document.createElement("h1");
+  questionTitle.classList.add("question-title");
+  questionTitle.innerText = currentQuest.question;
+  questionDiv.appendChild(questionTitle);
+
+  //unisco le risposte in un array unico
+  const answers = currentQuest.incorrect_answers.concat(
+    currentQuest.correct_answer
+  );
+
+  const answerDiv = document.createElement("div");
+  answerDiv.classList.add("question-container");
+  mainContainer.appendChild(answerDiv);
+
+  //per ogni elemento nell'array di risposte, ciclo
+  answers.forEach((answer) => {
+    const button = document.createElement("button");
+    button.classList.add("questionBtn");
+    button.innerText = answer;
+    button.addEventListener("click", () => {
+      if (answer === currentQuest.correct_answer) {
+        correctAnswers.push(currentQuest.correct_answer);
+        console.log("Correct!");
+      } else {
+        console.log("Incorrect!");
+      }
+
+      //ora ogni volta che io clicco una risposta si passa alla prossima
+      //io voglio che il sito tenga hold della mia risposta, che sara' colorata
+      //finche' io non vada avanti o il timer finisca
+      button.classList.add("clickedBtn");
+      const nextIndex = index + 1;
+      if (nextIndex < questions.length) {
+        clearPage();
+        displayQuestion(nextIndex);
+      } else {
+        console.log("End of questions.");
+      }
+    });
+    answerDiv.appendChild(button);
+    // console.log(correctAnswers)
+    console.log(correctAnswersLen);
+  });
+};
