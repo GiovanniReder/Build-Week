@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/assets/style/reset.css" />
+    <link rel="stylesheet" href="/assets/style/index.css" />
+    <link rel="stylesheet" href="/assets/style/quiz.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+    </style>
+  </head>
+
+  <body id="body">
+    <header>
+      <div>
+        <img src="/assets/images/epicode_logo.png" alt="logo" />
+      </div>
+      <div id="app"></div>
+    </header>
+    <main>
+      <!-- <div class="startBtn">
+        <button id="startBtn">inizia</button>
+      </div> -->
+      <section class="question-title-container">
+        <h1 class="question-title">How can I create a checkbox in HTML?</h1>
+      </section>
+
+      <div class="question-container">
+        <button class="questionBtn">ciao sono una risposta</button>
+        <button class="questionBtn clickedBtn">ciao sono una risposta</button>
+        <button class="questionBtn">ciao sono una risposta</button>
+        <button class="questionBtn">ciao sono una risposta</button>
+      </div>
+    </main>
+    <footer>
+      <h4 class="question-number">
+        QUESTION <span id="questionNumber"></span> <span class="span">/10</span>
+      </h4>
+    </footer>
+
+    <script src="/quiz.js"></script>
+  </body>
+</html>
