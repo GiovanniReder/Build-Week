@@ -1,7 +1,10 @@
+* {
+  font-weight: 400;
+}
+
 body {
   line-height: 2em;
   min-width: 800px;
-  font-weight: 400;
 }
 
 #logo {
@@ -34,8 +37,11 @@ ul {
 
 #button {
   font-family: "Outfit", sans-serif;
-  padding-left: 2em;
-  padding-right: 2em;
+  margin: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  padding-left: 2.5em;
+  padding-right: 2.5em;
 }
 
 #flex {
@@ -45,7 +51,7 @@ ul {
   align-items: center;
 }
 
-/*TUTTO STYLE DELLA CHECKBOX*/
+/*CHECKBOX STYLE*/
 .checkbox-wrapper-28 {
   --size: 20px;
   position: relative;
