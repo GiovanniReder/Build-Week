@@ -150,7 +150,7 @@ const questions = [
     difficulty: "easy",
     question: "What amount of bits commonly equals one byte",
     correct_answer: "8",
-    incorrect_answers: ["1", "2", "8", "64"],
+    incorrect_answers: ["1", "2", "64"],
   },
   {
     category: "Science: Computers",
@@ -211,3 +211,34 @@ const questions = [
 
 const option = document.querySelectorAll("button");
 const question = document.querySelectorAll("h1");
+
+const startButton = document.getElementById("startButton");
+document.addEventListener("DOMContentLoaded", () => {
+  startButton.addEventListener("click", () => {
+    questions.forEach((paperino) => {
+      const div = document.createElement("div");
+      div.classList.add("paperinoContainer");
+      const h1 = document.createElement("h1");
+
+      h1.innerText = paperino.question;
+      console.log(h1.innerText);
+      div.appendChild(h1);
+      document.getElementById("body").appendChild(div);
+      const answers = paperino.incorrect_answers.concat(
+        paperino.correct_answer
+      );
+      console.log(answers);
+
+      answers.forEach((pippo) => {
+        const button = document.createElement("button");
+        button.innerText = pippo;
+        div.appendChild(button);
+      });
+      const h4 = document.createElement("h4");
+      const numQ = document.getElementById("questionNumber");
+
+      numQ.innerText("prova");
+      h4.appendChild(numQ);
+    });
+  });
+});
