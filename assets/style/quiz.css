@@ -167,14 +167,14 @@ main div button {
   margin-left: auto;
   min-width: 44%;
 }
-footer h4 {
+h4 {
   font-weight: 700;
   margin-top: 5%;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
 }
-footer h4 span {
+.span {
   color: #ae0187;
   font-weight: 700;
 }
