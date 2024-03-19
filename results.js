@@ -3,7 +3,7 @@
 //poi prenderò le length dei due arrai come dati
 
 const labels1 = ["right", "wrong"];
-let data1 = [27.5, 62.5];
+let data1 = [80, 20];
 const colors1 = ["#D20094", "#00FFFF"];
 
 const myChart = document.querySelector(".my-chart");
