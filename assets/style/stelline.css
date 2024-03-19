@@ -53,6 +53,7 @@ button {
   border: none;
   padding-block: 1em;
   padding-inline: 3em;
+  cursor: pointer;
 }
 
 button:hover {
