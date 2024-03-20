@@ -104,13 +104,26 @@ header {
 .invisibile {
   display: none;
 }
+
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container {
+  width: 180px;
+  padding: 50px 0;
+  border-radius: 8px;
+  row-gap: 30px;
+  margin-top: -3%;
+}
+
 .circular-progress {
   position: relative;
   height: 100px;
   width: 100px;
   border-radius: 50%;
   background: conic-gradient(#00ffff 3.6deg, #827f7f47 0deg);
-
   display: flex;
   align-items: center;
   justify-content: center;

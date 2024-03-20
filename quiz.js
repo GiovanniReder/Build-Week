@@ -97,10 +97,42 @@ const questions = [
   },
 ];
 
+const apiUrl =
+  "https://opentdb.com/api.php?amount=10&category=18&difficulty=easy";
+
+let questionsArray = [];
+
+async function fetchQuestions() {
+  const response = await fetch(apiUrl);
+  const data = await response.json();
+
+  questionsArray = [];
+
+  data.results.forEach((question) => {
+    questionsArray.push({
+      question: question.question,
+      correct_answer: question.correct_answer,
+      incorrect_answers: question.incorrect_answers,
+    });
+  });
+
+  return questionsArray;
+}
+
+fetchQuestions().then(() => {
+  console.log(questionsArray);
+});
+
 const startButton = document.getElementById("startBtn");
 const mainContainer = document.querySelector("main");
 const correctAnswers = [];
-const container = document.getElementById("clock-container");
+const totalScore = questions.length;
+let currentQuestionIndex = 0;
+const circularProgress = document.querySelector(".circular-progress");
+const progressValue = document.querySelector(".progress-value");
+const clockContainer = document.getElementById("clock-container");
+const speed = 1000;
+let progress;
 
 startButton.addEventListener("click", () => {
   let circularProgress = document.querySelector(".circular-progress");
@@ -149,7 +181,8 @@ startButton.addEventListener("click", () => {
 
   clearPage();
   displayQuestion(0);
-  container.classList.remove("invisibile");
+  questionNumberHeader.classList.remove("invisible");
+  clockContainer.classList.remove("invisible");
 });
 
 const clearPage = () => {
@@ -157,10 +190,14 @@ const clearPage = () => {
 };
 
 const displayQuestion = (index) => {
-  const totalScore = questions.length;
-
+  //prendo nota del numero di oggetti nell'array per calcolare lo score totale
+  //che si fa (numero risposte giuste/numero totale domande) * 100
+  //questo dato andra' ad aggiornare il results.js
+  // const totalScore = questions.length;
+  // console.log(totalScore)
+  startTimer();
   const correctAnswersLen = correctAnswers.length;
-  const currentQuest = questions[index];
+  const currentQuest = questionsArray[index];
 
   const questionDiv = document.createElement("div");
   questionDiv.classList.add("question-title-container");
@@ -208,3 +245,59 @@ const displayQuestion = (index) => {
 };
 
 const redirectToResultPage = () => (window.location.href = "results.html");
+
+//todo1: aggiornare il question alla fine della pagina
+//todo2 aggiungere un bottone alla fine della pagina per mandare avanti, le
+//domande dovranno proseguire solo alla pressione di quel bottone.
+
+//todo3: collegare lo score con il results.js
+
+// const shuffleArray = (array) => {
+//   for (let i = array.length - 1; i > 0; i--) {
+//     const j = Math.floor(Math.random() * (i + 1));
+//     [array[i], array[j]] = [array[j], array[i]];
+//   }
+//   return array;
+// };
+
+// // Shuffle the questions array
+// const shuffledQuestions = shuffleArray(questionsArray);
+
+// setTimeout(console.log(shuffledQuestions), 5000);
+
+// Function to start the timer
+function startTimer() {
+  let progressStartValue = 5; // Initial value of timer
+  let progressEndValue = 0; // End value of timer
+  let degreesPerUnit = 360 / (progressStartValue - progressEndValue);
+
+  progress = setInterval(() => {
+    progressStartValue--;
+    progressValue.textContent = `${progressStartValue}`;
+
+    let angle = (progressStartValue - progressEndValue) * degreesPerUnit;
+    angle = angle < 0 ? angle + 360 : angle;
+
+    circularProgress.style.background = `conic-gradient(#00ffff ${angle}deg, #827f7f47 0deg)`;
+
+    if (progressStartValue == progressEndValue) {
+      clearInterval(progress);
+      goToNextQuestion(); // Call function to go to next question
+    }
+  }, speed);
+}
+
+// Function to go to the next question
+function goToNextQuestion() {
+  clearInterval(progress);
+  let nextIndex = currentQuestionIndex + 1;
+  if (nextIndex < questions.length) {
+    clearPage();
+    currentQuestionIndex = nextIndex;
+    displayQuestion(currentQuestionIndex);
+    startTimer(); // Start the timer for the next question
+  } else {
+    console.log("End of questions.");
+    redirectToResultPage();
+  }
+}
