@@ -108,16 +108,20 @@ const questions = [
     incorrect_answers: ["Python", "C", "Jakarta"],
   },
 ];
-const apiUrl =
-  "https://opentdb.com/api.php?amount=10&category=18&difficulty=easy";
+
+const selectionInput = document.querySelectorAll(".selectButtonLv")
+
 
 let questionsArray = [];
+let amountNum = 10;
+let difficultySel = "medium"
+
+const apiUrl ="https://opentdb.com/api.php?amount=" + amountNum + "&category=18&difficulty=" + difficultySel;
 
 async function fetchQuestions() {
   const response = await fetch(apiUrl);
   const data = await response.json();
 
-  questionsArray = [];
 
   data.results.forEach((question) => {
     questionsArray.push({
@@ -130,9 +134,9 @@ async function fetchQuestions() {
   return questionsArray;
 }
 
-fetchQuestions().then(() => {
-  console.log(questionsArray);
-});
+// fetchQuestions().then(() => {
+//   console.log(questionsArray);
+// });
 
 const startButton = document.getElementById("startBtn");
 const questionNumber = document.getElementById("questionNumber");
@@ -144,10 +148,22 @@ const correctAnswers = [];
 const totalScore = questions.length;
 let currentQuestionIndex = 0;
 
-startButton.addEventListener("click", () => {
+// startButton.addEventListener("click", () => {
+//   clearPage();
+//   fetchQuestions()
+//   displayQuestion(0);
+//   questionNumberHeader.classList.remove("invisible");
+// });
+
+startButton.addEventListener("click", async () => {
   clearPage();
+  
+  const questionsArray = await fetchQuestions();
   displayQuestion(0);
   questionNumberHeader.classList.remove("invisible");
+  
+  console.log(questionsArray)
+  
 });
 
 const clearPage = () => {
