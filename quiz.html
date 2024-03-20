@@ -3,12 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Epicode_quiz</title>
     <link rel="stylesheet" href="/assets/style/reset.css" />
     <link rel="stylesheet" href="/assets/style/index.css" />
     <link rel="stylesheet" href="/assets/style/quiz.css" />
   </head>
-
   <body>
     <header>
       <div>
@@ -34,17 +33,21 @@
           </select>
           <p class="text">Select the number of questions</p>
           <select>
-            <optgroup label="Number">
+            <optgroup label="N.">
               <option>10</option>
               <option>20</option>
               <option>30</option>
             </optgroup>
           </select>
-          <h3 class="bold">Good luck!</h3>
         </div>
       </div>
-      <div class="startBtn-container">
-        <button id="startBtn">Start</button>
+      <div id="flex">
+        <div class="align">
+          <h3 class="bold">Good luck!</h3>
+        </div>
+        <div class="startBtn-container">
+          <button id="startBtn">START</button>
+        </div>
       </div>
       <!-- <section class="question-title-container">
         <h1 class="question-title">How can I create a checkbox in HTML?</h1>
@@ -67,7 +70,6 @@
         <span class="span">/10</span>
       </h4>
     </footer>
-
     <script src="/quiz.js"></script>
   </body>
 </html>
