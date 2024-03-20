@@ -7,9 +7,6 @@
     <link rel="stylesheet" href="/assets/style/reset.css" />
     <link rel="stylesheet" href="/assets/style/index.css" />
     <link rel="stylesheet" href="/assets/style/quiz.css" />
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
-    </style>
   </head>
 
   <body>
@@ -19,8 +16,35 @@
       </div>
     </header>
     <main>
+      <div id="options">
+        <h2 class="bold">Before you start:</h2>
+        <p id="text">
+          Please remember to choose the
+          <span class="bold">questions difficulty</span> and the
+          <span class="bold">number of questions</span> you want in your quiz.
+        </p>
+        <div>
+          <p class="text">Select the level of the questions</p>
+          <select>
+            <optgroup label="Level">
+              <option>Easy</option>
+              <option>Medium</option>
+              <option>Hard</option>
+            </optgroup>
+          </select>
+          <p class="text">Select the number of questions</p>
+          <select>
+            <optgroup label="Number">
+              <option>10</option>
+              <option>20</option>
+              <option>30</option>
+            </optgroup>
+          </select>
+          <h3 class="bold">Good luck!</h3>
+        </div>
+      </div>
       <div class="startBtn-container">
-        <button id="startBtn">inizia</button>
+        <button id="startBtn">Start</button>
       </div>
       <!-- <section class="question-title-container">
         <h1 class="question-title">How can I create a checkbox in HTML?</h1>
@@ -31,12 +55,17 @@
         <button class="questionBtn clickedBtn">ciao sono una risposta</button>
         <button class="questionBtn">ciao sono una risposta</button>
         <button class="questionBtn">ciao sono una risposta </button>
+      </div>
+
+      <div class="next-question-container">
+        <button class="next-question-button">Next</button>
       </div> -->
     </main>
     <footer>
-      <!-- <h4 class="question-number">
-        QUESTION <span id="questionNumber"></span> <span class="span">/10</span>
-      </h4> -->
+      <h4 id="questionNumH4" class="question-number invisible">
+        QUESTION <span id="questionNumber"> </span>
+        <span class="span">/10</span>
+      </h4>
     </footer>
 
     <script src="/quiz.js"></script>
