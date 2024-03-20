@@ -210,6 +210,35 @@ const questions = [
   },
 ];
 
+const apiUrl = "https://opentdb.com/api.php?amount=10&category=18&difficulty=easy";
+
+let questionsArray = []; 
+
+async function fetchQuestions() {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+
+    
+    questionsArray = [];
+
+    data.results.forEach(question => {
+        questionsArray.push({
+            question: question.question,
+            correct_answer: question.correct_answer,
+            incorrect_answers: question.incorrect_answers
+        });
+    });
+
+    return questionsArray;
+}
+
+fetchQuestions().then(() => {
+    console.log(questionsArray);
+});
+
+
+
+
 const startButton = document.getElementById("startBtn");
 const mainContainer = document.querySelector("main");
 const correctAnswers = [];
@@ -222,6 +251,8 @@ startButton.addEventListener("click", () => {
 const clearPage = () => {
   mainContainer.innerHTML = "";
 };
+
+
 
 const displayQuestion = (index) => {
   //prendo nota del numero di oggetti nell'array per calcolare lo score totale
