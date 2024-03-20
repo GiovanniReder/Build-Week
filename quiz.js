@@ -109,16 +109,19 @@ const questions = [
   },
 ];
 
-const apiUrl =
-  "https://opentdb.com/api.php?amount=10&category=18&difficulty=easy";
+const selectionInput = document.querySelectorAll(".selectButtonLv")
+
 
 let questionsArray = [];
-
+let amountNum = 5;
+let difficultySel = "medium"
+console.log(questionsArray)
+const apiUrl ="https://opentdb.com/api.php?amount=" + amountNum + "&category=18&difficulty=" + difficultySel;
+// commento//
 async function fetchQuestions() {
   const response = await fetch(apiUrl);
   const data = await response.json();
 
-  questionsArray = [];
 
   data.results.forEach((question) => {
     questionsArray.push({
@@ -131,9 +134,9 @@ async function fetchQuestions() {
   return questionsArray;
 }
 
-fetchQuestions().then(() => {
-  console.log(questionsArray);
-});
+// fetchQuestions().then(() => {
+//   console.log(questionsArray);
+// });
 
 const startButton = document.getElementById("startBtn");
 const questionNumber = document.getElementById("questionNumber");
@@ -142,7 +145,7 @@ const questionNumberHeader = document.querySelector(
 );
 const mainContainer = document.querySelector("main");
 const correctAnswers = [];
-const totalScore = questions.length;
+const totalScore = questionsArray.length;
 let currentQuestionIndex = 0;
 const circularProgress = document.querySelector(".circular-progress");
 const progressValue = document.querySelector(".progress-value");
@@ -150,11 +153,21 @@ const clockContainer = document.getElementById("clock-container");
 const speed = 1000;
 let progress;
 
-startButton.addEventListener("click", () => {
+// startButton.addEventListener("click", () => {
+//   clearPage();
+//   fetchQuestions()
+//   displayQuestion(0);
+//   questionNumberHeader.classList.remove("invisible");
+// });
+
+startButton.addEventListener("click", async () => {
   clearPage();
+  
+  const questionsArray = await fetchQuestions();
   displayQuestion(0);
   questionNumberHeader.classList.remove("invisible");
   clockContainer.classList.remove("invisible");
+  console.log(questionsArray)
 });
 
 const clearPage = () => {
@@ -234,7 +247,7 @@ const displayQuestion = (index) => {
   nextQuestBtn.addEventListener("click", () => {
     currentQuestionIndex++;
 
-    if (currentQuestionIndex < questions.length) {
+    if (currentQuestionIndex < questionsArray.length) {
       clearPage();
       displayQuestion(currentQuestionIndex);
     } else {
@@ -293,7 +306,7 @@ function startTimer() {
 function goToNextQuestion() {
   clearInterval(progress);
   let nextIndex = currentQuestionIndex + 1;
-  if (nextIndex < questions.length) {
+  if (nextIndex < questionsArray.length) {
     clearPage();
     currentQuestionIndex = nextIndex;
     displayQuestion(currentQuestionIndex);
