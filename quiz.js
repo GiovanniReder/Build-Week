@@ -123,6 +123,10 @@ fetchQuestions().then(() => {
 });
 
 const startButton = document.getElementById("startBtn");
+const questionNumber = document.getElementById("questionNumber");
+const questionNumberHeader = document.querySelector(
+  "footer h4.question-number"
+);
 const mainContainer = document.querySelector("main");
 const correctAnswers = [];
 const totalScore = questions.length;
@@ -131,6 +135,7 @@ let currentQuestionIndex = 0;
 startButton.addEventListener("click", () => {
   clearPage();
   displayQuestion(0);
+  questionNumberHeader.classList.remove("invisible");
 });
 
 const clearPage = () => {
@@ -188,7 +193,7 @@ const displayQuestion = (index) => {
       }
 
       //ora ogni volta che io clicco una risposta si passa alla prossima
-      //io voglio che il sito tenga hold della mia risposta, che sara' colorata
+      //io voglio che il sito tenga conto della mia risposta, che sara' colorata
       //finche' io non vada avanti o il timer finisca
       questionButton.classList.add("clickedBtn");
     });
@@ -208,6 +213,7 @@ const displayQuestion = (index) => {
   nextQuestDiv.appendChild(nextQuestBtn);
   nextQuestBtn.addEventListener("click", () => {
     currentQuestionIndex++;
+
     if (currentQuestionIndex < questions.length) {
       clearPage();
       displayQuestion(currentQuestionIndex);
@@ -217,6 +223,7 @@ const displayQuestion = (index) => {
     }
   });
   nextQuestDiv.appendChild(nextQuestBtn);
+  questionNumber.innerText = currentQuestionIndex + 1;
 };
 
 const redirectToResultPage = () => (window.location.href = "results.html");
@@ -226,3 +233,16 @@ const redirectToResultPage = () => (window.location.href = "results.html");
 //domande dovranno proseguire solo alla pressione di quel bottone.
 
 //todo3: collegare lo score con il results.js
+
+const shuffleArray = (array) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+};
+
+// Shuffle the questions array
+const shuffledQuestions = shuffleArray(answer);
+
+setTimeout(console.log(shuffledQuestions), 5000);

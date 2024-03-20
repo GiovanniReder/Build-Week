@@ -80,8 +80,8 @@ h4 {
 }
 
 footer {
-  padding-top: 5em;
-  padding-bottom: 1em;
+  padding-top: 2.5em;
+  padding-bottom: 2em;
 }
 
 .question-number {
@@ -106,4 +106,8 @@ footer {
 .next-question-button:hover {
   background-color: #d20094;
   box-shadow: none;
+}
+
+.invisible {
+  display: none;
 }
