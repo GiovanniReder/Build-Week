@@ -25,6 +25,8 @@ document.addEventListener("DOMContentLoaded", function() {
    
     const buttonSendRe = document.getElementById("sendButtonId");
     const containerStars = document.getElementsByClassName("mainBody")[0]; 
+    const containerTextFeedBack = document.getElementById("comment")
+    let feedbackText = ""
     
     buttonSendRe.onclick = event => {
         if (allStarsWithFeedback.length === 0) {
@@ -32,7 +34,9 @@ document.addEventListener("DOMContentLoaded", function() {
             return; 
         }
         containerStars.remove(); 
-    
+        feedbackText = containerTextFeedBack.value;
+        console.log(feedbackText)
+        
         if (allStarsWithFeedback.length <= 6) {
             const neg = document.createElement("h3");
             const messageNegative = document.createElement("p");

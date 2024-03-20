@@ -210,7 +210,8 @@ const questions = [
 },
 
 ];
-let questionsArray = []; 
+
+
 
 let difficultyMode = "easy";
 let ammountNum = 10;
@@ -241,13 +242,14 @@ fetchQuestions().then(() => {
 
 
 
-
 const startButton = document.getElementById("startBtn");
 const mainContainer = document.querySelector("main");
 const correctAnswers = [];
+let questionsArray = []; 
 
 startButton.addEventListener("click", () => {
     clearPage();
+    
     displayQuestion(0);
 });
 
