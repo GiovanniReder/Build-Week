@@ -113,7 +113,7 @@ const selectionInput = document.querySelectorAll(".selectButtonLv")
 
 
 let questionsArray = [];
-let amountNum = 10;
+let amountNum = 5;
 let difficultySel = "medium"
 
 const apiUrl ="https://opentdb.com/api.php?amount=" + amountNum + "&category=18&difficulty=" + difficultySel;
@@ -145,7 +145,7 @@ const questionNumberHeader = document.querySelector(
 );
 const mainContainer = document.querySelector("main");
 const correctAnswers = [];
-const totalScore = questions.length;
+const totalScore = questionsArray.length;
 let currentQuestionIndex = 0;
 
 // startButton.addEventListener("click", () => {
@@ -242,7 +242,7 @@ const displayQuestion = (index) => {
   nextQuestBtn.addEventListener("click", () => {
     currentQuestionIndex++;
 
-    if (currentQuestionIndex < questions.length) {
+    if (currentQuestionIndex < questionsArray.length) {
       clearPage();
       displayQuestion(currentQuestionIndex);
     } else {
