@@ -21,3 +21,9 @@ let chart = new Chart(myChart, {
     ],
   },
 });
+
+const rateBtn = document.getElementById("rating-btn");
+
+rateBtn.addEventListener("click", () => redirectToRatingPage());
+
+const redirectToRatingPage = () => (window.location.href = "stelline_mod.html");

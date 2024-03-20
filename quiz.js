@@ -277,6 +277,7 @@ const displayQuestion = (index) => {
         displayQuestion(nextIndex);
       } else {
         console.log("End of questions.");
+        redirectToResultPage();
       }
     });
     answerDiv.appendChild(button);
@@ -284,3 +285,5 @@ const displayQuestion = (index) => {
     console.log(correctAnswersLen);
   });
 };
+
+const redirectToResultPage = () => (window.location.href = "results.html");
