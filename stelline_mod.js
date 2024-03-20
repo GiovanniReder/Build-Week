@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
     buttonSendRe.onclick = event => {
         if (allStarsWithFeedback.length === 0) {
-            alert("Per favore, seleziona un numero di stelle prima di inviare il feedback.");
+            alert("Please enter your feedback!");
             return; 
         }
         containerStars.remove(); 
@@ -40,8 +40,8 @@ document.addEventListener("DOMContentLoaded", function() {
             sadIcon.classList.add("far" ,"fa-frown")
             sadIcon.style.color = "red"
             sadIcon.style.fontSize = "100px"
-            neg.textContent = "Grazie per il tuo feedback!"
-            messageNegative.textContent = "Ci dispiace che tu non ti sia trovato bene";
+            neg.textContent = "Thank you for your feedback!"
+            messageNegative.textContent = "We're sorry your experience wasn't satisfying. Your opinion helps us improving!";
             neg.appendChild(messageNegative)
             neg.appendChild(sadIcon)
             document.body.appendChild(neg); 
@@ -53,8 +53,8 @@ document.addEventListener("DOMContentLoaded", function() {
             neutralIcon.classList.add("far", "fa-meh")
             neutralIcon.style.color = "yellow"
             neutralIcon.style.fontSize = "100px"
-            neu.textContent = "Grazie per il tuo feedback!"
-            messageNeutral.textContent = "La tua opinione ci aiuta a migliorare";
+            neu.textContent = "Thank you for your feedback!"
+            messageNeutral.textContent = "Your opinion is precious to us!";
             neu.appendChild(messageNeutral);
             neu.appendChild(neutralIcon);
             document.body.appendChild(neu); 
@@ -66,8 +66,8 @@ document.addEventListener("DOMContentLoaded", function() {
             smileIcon.classList.add("far", "fa-laugh");
             smileIcon.style.color = "green";
             smileIcon.style.fontSize = "100px"
-            pos.textContent = "Grazie per il tuo feedback!"
-            messagePositive.textContent = "Siamo contenti che tu ti sia trovato bene";
+            pos.textContent = "Thank you for your feedback!"
+            messagePositive.textContent = "We're glad you are happy with your experience!";
             pos.appendChild(messagePositive);
             pos.appendChild(smileIcon);
             document.body.appendChild(pos); 

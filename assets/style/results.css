@@ -1,5 +1,10 @@
 body {
   min-width: 1000px;
+  font-weight: 400;
+}
+
+#logo {
+  margin-left: 0;
 }
 
 h1 {
@@ -8,11 +13,21 @@ h1 {
 }
 
 h2 {
-  font-size: 4em;
+  font-size: 3.5em;
+}
+
+.fix {
+  padding-left: 1.5em;
+  text-align: right;
 }
 
 h3 {
   font-size: 1.8em;
+}
+
+.fontFix {
+  font-size: 20px;
+  font-weight: 300;
 }
 
 main > section {
@@ -21,7 +36,7 @@ main > section {
   justify-content: center;
   align-items: center;
   margin-block: 1.2em;
-  margin-bottom: 5em;
+  margin-bottom: 4em;
 }
 
 button {
@@ -34,6 +49,11 @@ button {
 .button-container {
   display: flex;
   justify-content: center;
+  margin-top: 1.5em;
+}
+
+button:hover {
+  box-shadow: -1px 1px 40px -1px rgba(255, 255, 255, 0.86);
 }
 
 .container {
@@ -73,6 +93,7 @@ button {
   margin-top: 19px;
   font-size: 0.9em;
   font-weight: 300;
+  line-height: 20px;
 }
 
 .donut-inner > h5 {
