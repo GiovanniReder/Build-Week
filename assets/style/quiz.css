@@ -25,9 +25,6 @@ main {
   line-height: 1.2em;
 }
 
-#startBtn {
-}
-
 .questionBtn {
   background: linear-gradient(#22284e, #22284e) padding-box,
     linear-gradient(180deg, #adb5e4, #22284e) border-box;
