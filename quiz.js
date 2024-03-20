@@ -210,9 +210,12 @@ const questions = [
 },
 
 ];
-const apiUrl = "https://opentdb.com/api.php?amount=10&category=18&difficulty=easy";
-
 let questionsArray = []; 
+
+let difficultyMode = "easy";
+let ammountNum = 10;
+
+const apiUrl = "https://opentdb.com/api.php?amount=" + ammountNum + "&category=18&difficulty=" + difficultyMode;
 
 async function fetchQuestions() {
     const response = await fetch(apiUrl);
