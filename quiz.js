@@ -109,19 +109,16 @@ const questions = [
   },
 ];
 
-const selectionInput = document.querySelectorAll(".selectButtonLv")
-
+const apiUrl =
+  "https://opentdb.com/api.php?amount=10&category=18&difficulty=easy";
 
 let questionsArray = [];
-let amountNum = 5;
-let difficultySel = "medium"
-
-const apiUrl ="https://opentdb.com/api.php?amount=" + amountNum + "&category=18&difficulty=" + difficultySel;
 
 async function fetchQuestions() {
   const response = await fetch(apiUrl);
   const data = await response.json();
 
+  questionsArray = [];
 
   data.results.forEach((question) => {
     questionsArray.push({
@@ -134,9 +131,9 @@ async function fetchQuestions() {
   return questionsArray;
 }
 
-// fetchQuestions().then(() => {
-//   console.log(questionsArray);
-// });
+fetchQuestions().then(() => {
+  console.log(questionsArray);
+});
 
 const startButton = document.getElementById("startBtn");
 const questionNumber = document.getElementById("questionNumber");
@@ -145,25 +142,19 @@ const questionNumberHeader = document.querySelector(
 );
 const mainContainer = document.querySelector("main");
 const correctAnswers = [];
-const totalScore = questionsArray.length;
+const totalScore = questions.length;
 let currentQuestionIndex = 0;
+const circularProgress = document.querySelector(".circular-progress");
+const progressValue = document.querySelector(".progress-value");
+const clockContainer = document.getElementById("clock-container");
+const speed = 1000;
+let progress;
 
-// startButton.addEventListener("click", () => {
-//   clearPage();
-//   fetchQuestions()
-//   displayQuestion(0);
-//   questionNumberHeader.classList.remove("invisible");
-// });
-
-startButton.addEventListener("click", async () => {
+startButton.addEventListener("click", () => {
   clearPage();
-  
-  const questionsArray = await fetchQuestions();
   displayQuestion(0);
   questionNumberHeader.classList.remove("invisible");
-  
-  console.log(questionsArray)
-  
+  clockContainer.classList.remove("invisible");
 });
 
 const clearPage = () => {
@@ -176,6 +167,7 @@ const displayQuestion = (index) => {
   //questo dato andra' ad aggiornare il results.js
   // const totalScore = questions.length;
   // console.log(totalScore)
+  startTimer();
   const correctAnswersLen = correctAnswers.length;
   const currentQuest = questionsArray[index];
 
@@ -242,7 +234,7 @@ const displayQuestion = (index) => {
   nextQuestBtn.addEventListener("click", () => {
     currentQuestionIndex++;
 
-    if (currentQuestionIndex < questionsArray.length) {
+    if (currentQuestionIndex < questions.length) {
       clearPage();
       displayQuestion(currentQuestionIndex);
     } else {
@@ -262,15 +254,52 @@ const redirectToResultPage = () => (window.location.href = "results.html");
 
 //todo3: collegare lo score con il results.js
 
-const shuffleArray = (array) => {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
+// const shuffleArray = (array) => {
+//   for (let i = array.length - 1; i > 0; i--) {
+//     const j = Math.floor(Math.random() * (i + 1));
+//     [array[i], array[j]] = [array[j], array[i]];
+//   }
+//   return array;
+// };
+
+// // Shuffle the questions array
+// const shuffledQuestions = shuffleArray(questionsArray);
+
+// setTimeout(console.log(shuffledQuestions), 5000);
+
+// Function to start the timer
+function startTimer() {
+  let progressStartValue = 5; // Initial value of timer
+  let progressEndValue = 0; // End value of timer
+  let degreesPerUnit = 360 / (progressStartValue - progressEndValue);
+
+  progress = setInterval(() => {
+    progressStartValue--;
+    progressValue.textContent = `${progressStartValue}`;
+
+    let angle = (progressStartValue - progressEndValue) * degreesPerUnit;
+    angle = angle < 0 ? angle + 360 : angle;
+
+    circularProgress.style.background = `conic-gradient(#00ffff ${angle}deg, #827f7f47 0deg)`;
+
+    if (progressStartValue == progressEndValue) {
+      clearInterval(progress);
+      goToNextQuestion(); // Call function to go to next question
+    }
+  }, speed);
+}
+
+// Function to go to the next question
+function goToNextQuestion() {
+  clearInterval(progress);
+  let nextIndex = currentQuestionIndex + 1;
+  if (nextIndex < questions.length) {
+    clearPage();
+    currentQuestionIndex = nextIndex;
+    displayQuestion(currentQuestionIndex);
+    startTimer(); // Start the timer for the next question
+  } else {
+    console.log("End of questions.");
+    redirectToResultPage();
   }
-  return array;
-};
-
-// Shuffle the questions array
-const shuffledQuestions = shuffleArray(answer);
-
-setTimeout(console.log(shuffledQuestions), 5000);
+}
