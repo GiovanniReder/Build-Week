@@ -1,3 +1,15 @@
+/*const btn = document.getElementsByTagName("optgroup");
+btn.addEventListener("click", () => { 
+    btn.forEach(button => {
+       btn.style.backgroundColor = "#9ffcfc";
+    } )  
+   });*/
+
+ /* const btn = document.getElementsById("startBtn");
+  btn.addEventListener("click", () => { 
+          btn.style.backgroundColor = "#9ffcfc";
+      });*/
+
 const questions = [
   {
     category: "Science: Computers",

@@ -2,8 +2,73 @@ body {
   min-width: 900px;
 }
 
+#text {
+  font-size: 16px;
+  line-height: 1.1em;
+  margin-top: 2em;
+}
+
+h2 {
+  font-size: 35px;
+}
+
+span {
+  color: #d20094;
+}
+
+h3 {
+  font-size: 30px;
+  margin-top: 2.5em;
+}
+
+.text {
+  margin-top: 3em;
+  margin-left: 1em;
+  margin-bottom: 1em;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+#options {
+  margin-top: 10em;
+  margin-bottom: 2em;
+  margin-left: 1em;
+  align-self: flex-start;
+}
+
+optgroup {
+  color: #000000;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+#option:hover {
+  background-color: #063a3a;
+}
+
+select {
+  display: inline;
+  color: #000000;
+  background-color: #00ffff;
+  font-size: 20px;
+  font-weight: 400;
+  border: #22284e solid 2px;
+  margin-left: 1.5em;
+  padding: 2px;
+  outline: none;
+}
+
+option {
+  font-size: 20px;
+  font-weight: 400;
+  color: #000000;
+}
+
 .startBtn-container {
   margin-block: 20%;
+  margin-top: 3em;
 }
 
 main {
