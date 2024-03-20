@@ -5,27 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="/assets/style/reset.css" />
+    <link rel="stylesheet" href="/assets/style/index.css" />
     <link rel="stylesheet" href="/assets/style/quiz.css" />
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
     </style>
   </head>
 
-  <body id="body">
+  <body>
     <header>
       <div>
         <img src="/assets/images/epicode_logo.png" alt="logo" />
       </div>
-      <div id="app"></div>
+      <div id="clock-container" class="container invisibile">
+        <div class="circular-progress">
+          <div id="divP">
+            <p id="marginP" class="pi">SECONDS</p>
+            <p class="progress-value">60</p>
+            <p class="pi">REMAININGS</p>
+          </div>
+        </div>
+      </div>
     </header>
     <main>
-      <button id="startButton">inizia</button>
+      <div class="startBtn-container">
+        <button id="startBtn">inizia</button>
+      </div>
     </main>
-    <footer>
-      <h4>
-        QUESTION <span id="questionNumber"></span> <span class="span">/10</span>
-      </h4>
-    </footer>
+    <footer></footer>
 
     <script src="/quiz.js"></script>
   </body>
