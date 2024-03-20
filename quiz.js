@@ -1,116 +1,3 @@
-// const FULL_DASH_ARRAY = 283;
-// const WARNING_THRESHOLD = 10;
-// const ALERT_THRESHOLD = 5;
-
-// const COLOR_CODES = {
-//   info: {
-//     color: "green",
-//   },
-//   warning: {
-//     color: "orange",
-//     threshold: WARNING_THRESHOLD,
-//   },
-//   alert: {
-//     color: "red",
-//     threshold: ALERT_THRESHOLD,
-//   },
-// };
-
-// const TIME_LIMIT = 60;
-// let timePassed = 0;
-// let timeLeft = TIME_LIMIT;
-
-// let remainingPathColor = COLOR_CODES.info.color;
-
-// document.getElementById("app").innerHTML = `
-// <div class="base-timer">
-//   <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-//     <g class="base-timer__circle">
-//       <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45"></circle>
-//       <path
-//         id="base-timer-path-remaining"
-//         stroke-dasharray="283"
-//         class="base-timer__path-remaining ${remainingPathColor}"
-//         d="
-//           M 50, 50
-//           m -45, 0
-//           a 45,45 0 1,0 90,0
-//           a 45,45 0 1,0 -90,0
-//         "
-//       ></path>
-//     </g>
-//   </svg>
-//   <span id="base-timer-label" class="base-timer__label">${formatTime(
-//     timeLeft
-//   )}</span>
-// </div>
-// `;
-
-// startTimer();
-
-// function onTimesUp() {
-//   clearInterval(timerInterval);
-// }
-
-// function startTimer() {
-//   timerInterval = setInterval(() => {
-//     timePassed = timePassed += 1;
-//     timeLeft = TIME_LIMIT - timePassed;
-//     document.getElementById("base-timer-label").innerHTML =
-//       formatTime(timeLeft);
-//     setCircleDasharray();
-//     setRemainingPathColor(timeLeft);
-
-//     if (timeLeft === 0) {
-//       onTimesUp();
-//     }
-//   }, 1000);
-// }
-
-// function formatTime(time) {
-//   const minutes = Math.floor(time / 60);
-//   let seconds = time % 60;
-
-//   if (seconds < 10) {
-//     seconds = `0${seconds}`;
-//   }
-
-//   return `${minutes}:${seconds}`;
-// }
-
-// function setRemainingPathColor(timeLeft) {
-//   const { alert, warning, info } = COLOR_CODES;
-//   if (timeLeft <= alert.threshold) {
-//     document
-//       .getElementById("base-timer-path-remaining")
-//       .classList.remove(warning.color);
-//     document
-//       .getElementById("base-timer-path-remaining")
-//       .classList.add(alert.color);
-//   } else if (timeLeft <= warning.threshold) {
-//     document
-//       .getElementById("base-timer-path-remaining")
-//       .classList.remove(info.color);
-//     document
-//       .getElementById("base-timer-path-remaining")
-//       .classList.add(warning.color);
-//   }
-// }
-
-// function calculateTimeFraction() {
-//   const rawTimeFraction = timeLeft / TIME_LIMIT;
-//   return rawTimeFraction - (1 / TIME_LIMIT) * (1 - rawTimeFraction);
-// }
-
-// function setCircleDasharray() {
-//   const circleDasharray = `${(
-//     calculateTimeFraction() * FULL_DASH_ARRAY
-//   ).toFixed(0)} 283`;
-//   document
-//     .getElementById("base-timer-path-remaining")
-//     .setAttribute("stroke-dasharray", circleDasharray);
-// }
-
 const questions = [
   {
     category: "Science: Computers",
@@ -213,10 +100,56 @@ const questions = [
 const startButton = document.getElementById("startBtn");
 const mainContainer = document.querySelector("main");
 const correctAnswers = [];
+const container = document.getElementById("clock-container");
 
 startButton.addEventListener("click", () => {
+  let circularProgress = document.querySelector(".circular-progress");
+  let progressValue = document.querySelector(".progress-value");
+  let progressStartValue = 5;
+  let progressEndValue = 0;
+  let speed = 1000;
+  let degreesPerUnit = 360 / (progressStartValue - progressEndValue);
+  let progress;
+
+  progress = setInterval(() => {
+    progressStartValue--;
+    progressValue.textContent = `${progressStartValue}`;
+
+    let angle = (progressStartValue - progressEndValue) * degreesPerUnit;
+    angle = angle < 0 ? angle + 360 : angle;
+
+    circularProgress.style.background = `conic-gradient(#00ffff ${angle}deg, #827f7f47 0deg)`;
+
+    if (progressStartValue == progressEndValue) {
+      clearInterval(progress);
+      let index = questions.length;
+      const nextIndex = index + 1;
+      if (nextIndex < questions.length) {
+        clearPage();
+        displayQuestion(nextIndex);
+        progressStartValue = 60;
+        progressEndValue = 0;
+
+        progress = setInterval(() => {
+          progressStartValue--;
+          progressValue.textContent = `${progressStartValue}`;
+          let angle = (progressStartValue - progressEndValue) * degreesPerUnit;
+          angle = angle < 0 ? angle + 360 : angle;
+          circularProgress.style.background = `conic-gradient(#00ffff ${angle}deg, #827f7f47 0deg)`;
+          if (progressStartValue == progressEndValue) {
+            clearInterval(progress);
+          }
+        }, speed);
+      } else {
+        console.log("End of questions.");
+        redirectToResultPage();
+      }
+    }
+  }, speed);
+
   clearPage();
   displayQuestion(0);
+  container.classList.remove("invisibile");
 });
 
 const clearPage = () => {
@@ -224,28 +157,20 @@ const clearPage = () => {
 };
 
 const displayQuestion = (index) => {
-  //prendo nota del numero di oggetti nell'array per calcolare lo score totale
-  //che si fa (numero risposte giuste/numero totale domande) * 100
-  //questo dato andra' ad aggiornare il results.js
   const totalScore = questions.length;
-  // console.log(totalScore)
+
   const correctAnswersLen = correctAnswers.length;
   const currentQuest = questions[index];
-
-  //genero un div e lo pusho nel main
 
   const questionDiv = document.createElement("div");
   questionDiv.classList.add("question-title-container");
   mainContainer.appendChild(questionDiv);
-
-  //genero un h1 che prende il titolo dall'oggetto e lo pusho nel div
 
   const questionTitle = document.createElement("h1");
   questionTitle.classList.add("question-title");
   questionTitle.innerText = currentQuest.question;
   questionDiv.appendChild(questionTitle);
 
-  //unisco le risposte in un array unico
   const answers = currentQuest.incorrect_answers.concat(
     currentQuest.correct_answer
   );
@@ -254,7 +179,6 @@ const displayQuestion = (index) => {
   answerDiv.classList.add("question-container");
   mainContainer.appendChild(answerDiv);
 
-  //per ogni elemento nell'array di risposte, ciclo
   answers.forEach((answer) => {
     const button = document.createElement("button");
     button.classList.add("questionBtn");
@@ -267,9 +191,6 @@ const displayQuestion = (index) => {
         console.log("Incorrect!");
       }
 
-      //ora ogni volta che io clicco una risposta si passa alla prossima
-      //io voglio che il sito tenga hold della mia risposta, che sara' colorata
-      //finche' io non vada avanti o il timer finisca
       button.classList.add("clickedBtn");
       const nextIndex = index + 1;
       if (nextIndex < questions.length) {
@@ -281,7 +202,7 @@ const displayQuestion = (index) => {
       }
     });
     answerDiv.appendChild(button);
-    // console.log(correctAnswers)
+
     console.log(correctAnswersLen);
   });
 };
