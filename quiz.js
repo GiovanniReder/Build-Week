@@ -207,9 +207,9 @@ const questions = [
       "Which programming language shares its name with an island in Indonesia?",
     correct_answer: "Java",
     incorrect_answers: ["Python", "C", "Jakarta"],
-  },
-];
+},
 
+];
 const apiUrl = "https://opentdb.com/api.php?amount=10&category=18&difficulty=easy";
 
 let questionsArray = []; 
@@ -217,10 +217,10 @@ let questionsArray = [];
 async function fetchQuestions() {
     const response = await fetch(apiUrl);
     const data = await response.json();
-
+    
     
     questionsArray = [];
-
+    
     data.results.forEach(question => {
         questionsArray.push({
             question: question.question,
@@ -228,7 +228,7 @@ async function fetchQuestions() {
             incorrect_answers: question.incorrect_answers
         });
     });
-
+    
     return questionsArray;
 }
 
@@ -244,12 +244,12 @@ const mainContainer = document.querySelector("main");
 const correctAnswers = [];
 
 startButton.addEventListener("click", () => {
-  clearPage();
-  displayQuestion(0);
+    clearPage();
+    displayQuestion(0);
 });
 
 const clearPage = () => {
-  mainContainer.innerHTML = "";
+    mainContainer.innerHTML = "";
 };
 
 
@@ -258,10 +258,10 @@ const displayQuestion = (index) => {
   //prendo nota del numero di oggetti nell'array per calcolare lo score totale
   //che si fa (numero risposte giuste/numero totale domande) * 100
   //questo dato andra' ad aggiornare il results.js
-  const totalScore = questions.length;
+  const totalScore = questionsArray.length;
   // console.log(totalScore)
   const correctAnswersLen = correctAnswers.length;
-  const currentQuest = questions[index];
+  const currentQuest = questionsArray[index];
 
   //genero un div e lo pusho nel main
 
@@ -303,7 +303,7 @@ const displayQuestion = (index) => {
       //finche' io non vada avanti o il timer finisca
       button.classList.add("clickedBtn");
       const nextIndex = index + 1;
-      if (nextIndex < questions.length) {
+      if (nextIndex < questionsArray.length) {
         clearPage();
         displayQuestion(nextIndex);
       } else {
