@@ -199,3 +199,72 @@ footer {
 .invisible {
   display: none;
 }
+
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container {
+  width: 180px;
+  padding: 50px 0;
+  border-radius: 8px;
+  row-gap: 30px;
+  margin-top: -3%;
+}
+
+.circular-progress {
+  position: relative;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  background: conic-gradient(#00ffff 3.6deg, #827f7f47 0deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8%;
+}
+.circular-progress::before {
+  content: "";
+  position: absolute;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  background-color: #411757;
+}
+.progress-value {
+  position: relative;
+  font-size: 40px;
+  font-weight: 400;
+  color: #ffffff;
+  margin-left: 0.1em;
+  padding-top: 0;
+}
+.text {
+  font-size: 30px;
+  font-weight: 200;
+  color: #606060;
+}
+
+.divP p {
+  text-align: center;
+  margin: auto;
+  position: relative;
+  color: white;
+  font-weight: 200;
+}
+
+.pi {
+  margin-left: 0px;
+  position: relative;
+  color: white;
+  font-size: 0.5em;
+  margin-top: -20px;
+  margin-bottom: -20px;
+  font-weight: 200;
+  font-family: "Inter", sans-serif;
+}
+
+#marginP {
+  margin-left: 5px;
+}
