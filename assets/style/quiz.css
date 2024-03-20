@@ -23,23 +23,23 @@ main {
 .question-title {
   font-weight: 500;
   line-height: 1.2em;
+  font-size: 3em;
 }
 
 .questionBtn {
   background: linear-gradient(#22284e, #22284e) padding-box,
     linear-gradient(180deg, #adb5e4, #22284e) border-box;
   color: #e2ffff;
-  padding: 1.3em 3.5em;
+  padding: 1.1em 3.2em;
   border: 5px solid transparent;
   border-radius: 50px;
   display: inline-block;
-  font-size: 28px;
-  font-size: 1.3em;
+  font-size: 1.1em;
   font-weight: 500;
   margin-block: 1em;
   margin-right: 2em;
-  max-width: 380px;
-  min-width: 380px;
+  max-width: 350px;
+  min-width: 350px;
 }
 
 /* {
@@ -88,4 +88,22 @@ footer {
   font-size: 1.3em;
   font-weight: 400;
   letter-spacing: 3px;
+}
+
+.next-question-container {
+  margin-left: 45em;
+  margin-top: 5em;
+}
+
+.next-question-button {
+  font-family: "Outfit", sans-serif;
+  margin: 0;
+  padding-block: 0.5em;
+  padding-inline: 2, 5em;
+  border-radius: 20px;
+}
+
+.next-question-button:hover {
+  background-color: #d20094;
+  box-shadow: none;
 }
