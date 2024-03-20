@@ -167,6 +167,7 @@ startButton.addEventListener("click", async () => {
   displayQuestion(0);
   questionNumberHeader.classList.remove("invisible");
   clockContainer.classList.remove("invisible");
+  console.log(questionsArray)
 });
 
 const clearPage = () => {
@@ -305,7 +306,7 @@ function startTimer() {
 function goToNextQuestion() {
   clearInterval(progress);
   let nextIndex = currentQuestionIndex + 1;
-  if (nextIndex < questions.length) {
+  if (nextIndex < questionsArray.length) {
     clearPage();
     currentQuestionIndex = nextIndex;
     displayQuestion(currentQuestionIndex);

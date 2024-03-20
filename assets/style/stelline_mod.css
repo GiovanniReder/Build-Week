@@ -68,9 +68,11 @@ button:hover {
 .highlight {
   color: #d20094;
 }
+
 .mainBody {
   text-align: center;
 }
+
 input {
   background-color: transparent;
   width: 800px;
@@ -79,9 +81,11 @@ input {
   border-width: 0 0 2px;
   border-color: #d20094;
 }
+
 .starCheck {
   cursor: pointer;
 }
+
 .starRating {
   margin-top: 2.5em;
   margin-bottom: 4em;
@@ -99,6 +103,7 @@ form h2 {
   margin-bottom: 1.5em;
   margin-top: 2.5em;
 }
+
 .starsClass {
   cursor: pointer;
 }
